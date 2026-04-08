@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Peminjaman HP | Sign In</title>
+    
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Bootstrap 4 (untuk struktur & utility) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+    <!-- AdminLTE style (minimal, untuk efek card & login-box) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/css/adminlte.min.css">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* ================= BACKGROUND FULLSCREEN ================= */
+        body.login-page {
+            background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxkZWZzPjxsaW5lYXJHcmFkaWVudCBpZD0iZyIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMTAwJSI+PHN0b3Agb2Zmc2V0PSIwJSIgc3R5bGU9InN0b3AtY29sb3I6IzBkMjA0MDsgc3RvcC1vcGFjaXR5OjAuNzUiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiMwYjFhMzA7IHN0b3Atb3BhY2l0eTowLjg1Ii8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0iIzBkMjA0MCIvPjxjaXJjbGUgY3g9IjIwJSIgY3k9IjMwJSIgcj0iMjUlIiBmaWxsPSIjMjU2M2ViIiBmaWxsLW9wYWNpdHk9IjAuMTUiLz48Y2lyY2xlIGN4PSI4NSUiIGN5PSI3MCUiIHI9IjM1JSIgZmlsbD0iI2ZiYmYyNCIgZmlsbC1vcGFjaXR5PSIwLjEiLz48L3N2Zz4=') no-repeat center center fixed;
+            background-size: cover;
+            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+        }
+        
+        /* Overlay gelap modern */
+        body.login-page::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background: linear-gradient(125deg, rgba(8, 20, 36, 0.6) 0%, rgba(0, 0, 0, 0.55) 100%);
+            backdrop-filter: blur(2px);
+            z-index: -1;
+        }
+        
+        /* ================= LOGIN TITLE / LOGO AREA ================= */
+        .login-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            text-decoration: none;
+            display: inline-flex;
+            gap: 6px;
+            transition: all 0.2s ease;
+        }
+        .login-title:hover {
+            text-decoration: none;
+            transform: scale(1.01);
+        }
+        .title-bold {
+            color: #ffffff;
+            text-shadow: 0 6px 14px rgba(0,0,0,0.5);
+            background: linear-gradient(135deg, #fff, #e2e8f0);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: white;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.4);
+        }
+        .title-accent {
+            color: #fbbf24;
+            text-shadow: 0 4px 12px rgba(0,0,0,0.6);
+            font-weight: 800;
+        }
+        
+        /* ================= CARD + GLASS EFFECT ================= */
+        .login-box {
+            width: 420px;
+            margin: 0 auto;
+        }
+        .card {
+            background: rgba(18, 28, 40, 0.45);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-radius: 28px;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            box-shadow: 0 25px 45px -12px rgba(0, 0, 0, 0.5);
+            transition: all 0.2s;
+        }
+        .login-card-body {
+            background: transparent;
+            padding: 2rem 1.8rem;
+            color: #f8fafc;
+        }
+        .login-box-msg {
+            font-size: 1rem;
+            font-weight: 500;
+            text-align: center;
+            margin-bottom: 1.5rem;
+            color: #f1f5f9;
+            letter-spacing: 0.3px;
+        }
+        .form-control {
+            background: rgba(255, 255, 255, 0.92);
+            border: none;
+            border-radius: 14px;
+            padding: 0.75rem 1rem;
+            font-weight: 500;
+            color: #0f172a;
+            transition: all 0.2s;
+        }
+        .form-control:focus {
+            background: #ffffff;
+            box-shadow: 0 0 0 3px rgba(59,130,246,0.5);
+            border: none;
+        }
+        .input-group-text {
+            background: rgba(255,255,240,0.85);
+            border: none;
+            border-radius: 14px;
+            color: #1e293b;
+        }
+        .input-group .form-control {
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+        .input-group-append .input-group-text {
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+            border-left: none;
+        }
+        .btn-primary {
+            background: linear-gradient(98deg, #2563eb, #1e40af);
+            border: none;
+            border-radius: 40px;
+            font-weight: 600;
+            padding: 0.55rem 0;
+            font-size: 0.95rem;
+            transition: 0.2s;
+            box-shadow: 0 5px 12px rgba(0,0,0,0.2);
+        }
+        .btn-primary:hover {
+            background: linear-gradient(98deg, #3b82f6, #1e3a8a);
+            transform: translateY(-1px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+        }
+        .icheck-primary label {
+            color: #eef2ff;
+            font-weight: 500;
+            padding-left: 8px;
+        }
+        .icheck-primary input {
+            accent-color: #fbbf24;
+            width: 16px;
+            height: 16px;
+        }
+        a {
+            color: #facc15;
+            text-decoration: none;
+            font-weight: 500;
+            transition: 0.15s;
+        }
+        a:hover {
+            color: #ffdd55;
+            text-decoration: underline;
+        }
+        .invalid-feedback {
+            font-size: 0.75rem;
+            background: rgba(220,38,38,0.8);
+            border-radius: 30px;
+            padding: 2px 10px;
+            margin-top: 5px;
+            display: inline-block;
+        }
+        /* Responsive */
+        @media (max-width: 480px) {
+            .login-box {
+                width: 92%;
+            }
+            .login-title {
+                font-size: 1.9rem;
+            }
+            .login-card-body {
+                padding: 1.5rem;
+            }
+        }
+        /* small glint effect */
+        .input-group-text i {
+            font-size: 1rem;
+        }
+    </style>
+</head>
+<body class="hold-transition login-page">
+    <div class="login-box" style="margin-top: 6vh;">
+        <div class="login-logo text-center mb-3">
+            <a href="#" class="login-title">
+                <span class="title-bold">PEMINJAMAN</span> 
+                <span class="title-accent">HP</span>
+            </a>
+        </div>
+        <!-- /.login-logo -->
+        <div class="card">
+            <div class="card-body login-card-body">
+                <p class="login-box-msg">
+                    <i class="fas fa-key mr-1"></i> Sign in to start your session
+                </p>
+
+                <!-- Form login (tidak ada action backend, hanya demo interaktif) -->
+                <form id="loginForm" method="post" action="#">
+                    <!-- email field -->
+                    <div class="input-group mb-3">
+                        <input type="email" 
+                               class="form-control" 
+                               id="emailInput"
+                               name="email" 
+                               placeholder="Email" 
+                               value="user@example.com"
+                               autofocus>
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-envelope"></span>
+                            </div>
+                        </div>
+                        <div class="invalid-feedback d-none" id="emailError">Email diperlukan</div>
+                    </div>
+
+                    <!-- password field -->
+                    <div class="input-group mb-3">
+                        <input type="password" 
+                               class="form-control" 
+                               id="passwordInput"
+                               name="password" 
+                               placeholder="Password" 
+                               value="demo123">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-lock"></span>
+                            </div>
+                        </div>
+                        <div class="invalid-feedback d-none" id="passwordError">Password diperlukan</div>
+                    </div>
+
+                    <!-- Remember & Submit -->
+                    <div class="row align-items-center">
+                        <div class="col-7">
+                            <div class="icheck-primary">
+                                <input type="checkbox" name="remember" id="remember">
+                                <label for="remember">Remember Me</label>
+                            </div>
+                        </div>
+                        <div class="col-5">
+                            <button type="submit" id="btnLogin" class="btn btn-primary btn-block">
+                                Sign In <i class="fas fa-arrow-right ml-1"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+
+                <!-- AUDIO ELEMENT (sama seperti yang diminta, suara .wav) -->
+                <audio id="loginSound" preload="auto">
+                    <!-- Untuk keperluan demo, kita menggunakan suara 'beep' pendek via base64 WAV? 
+                         Alternatif: memakai file suara dari assets? tapi karena hanya file html standalone, 
+                         kita buat suara pendek dari Web Audio API jika file wav tidak ditemukan, 
+                         namun lebih baik kita sediakan sumber suara online dummy? 
+                         Agar mirip dengan kode asli (menggunakan asset), disini kita akan membuat 
+                         data URL suara 'short click' base64 WAV? 
+                         Tapi lebih stabil: menggunakan Web Audio API fallback, namun agar mirip, kita buat 
+                         elemen audio dengan sumber inline base64 WAV (silence + short beep) 
+                         atau kita gunakan suara dari URL online "https://www.soundjay.com/misc/sounds/bell-ringing-05.mp3"? 
+                         Tapi supaya tepat & tanpa dependensi eksternal, kita generate bunyi pakai Web Audio API jika file gagal.
+                         TAPI di kode asli menggunakan {{ asset('audio/suara.wav') }}. Dalam index.html murni, 
+                         kita bisa menyematkan suara short beep menggunakan data uri atau memanfaatkan library? 
+                         Saya akan buat fungsi fallback: jika file audio tidak dapat dimainkan, tetap ada bunyi "pop" 
+                         pakai Web Audio. Namun agar terasa mirip, saya akan buat Audio dengan sumber internal (silence) 
+                         lalu generate bunyi buatan? Sebaiknya kita sediakan file base64 WAV singkat.
+                         Solusi praktis: Buat audio context untuk bunyi "short beep" agar interaksi login selalu ada feedback suara.
+                         Tapi agar sesuai dengan referensi yang menggunakan file suara.wav, saya akan memakai file suara dari 
+                         layanan free sound effect? tapi tidak perlu ribet, kita buat elemen audio dengan sumber inline:
+                         dengan javascript membuat bunyi 'ting' pendek. Tapi pengguna bisa tidak mengizinkan autoplay? 
+                         tetap kita ikuti logika: tombol di klik -> cegah submit default -> putar audio -> lalu submit form.
+                         Karena form tidak benar-benar ke backend (hanya demo), kita akan arahkan ke halaman sukses atau alert.
+                    -->
+                    <!-- Sumber: kita buat suara beep pendek melalui Web Audio API agar lebih reliable tanpa file eksternal -->
+                </audio>
+
+                <!-- Forgot & Register links (mirip asli) -->
+                <p class="mb-1 mt-3">
+                    <a href="#" id="forgotLink"><i class="fas fa-lock mr-1"></i> I forgot my password</a>
+                </p>
+                <p class="mb-0">
+                    <a href="#" id="registerLink" class="text-center">
+                        <i class="fas fa-user-plus mr-1"></i> Register akun baru
+                    </a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ========== MEMBUAT SISTEM SUARA (agar sesuai dengan kode asli: suara.wav) ==========
+        // Karena di code asli menggunakan <audio> dengan asset, disini kita buat fungsi playSound()
+        // yang membuat bunyi singkat pakai Web Audio API (agar tidak tergantung file eksternal)
+        // Tapi juga kita tetap menyediakan element audio untuk konsistensi, namun Web Audio lebih pasti.
+        // Untuk memberikan efek seperti "suara.wav" yang ringan, kita gunakan Oscillator singkat.
+        
+        let audioContext = null;
+        
+        function playLoginSound() {
+            // Coba gunakan Audio element jika ada file, tapi tidak ada file local. 
+            // Namun kita tetap buat bunyi bip pendek mirip notifikasi.
+            try {
+                // Inisialisasi AudioContext (harus di user gesture)
+                if (!audioContext) {
+                    audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                }
+                // pastikan context aktif
+                if (audioContext.state === 'suspended') {
+                    audioContext.resume().then(() => {
+                        beepSound();
+                    }).catch(e => console.log("Audio resume failed", e));
+                } else {
+                    beepSound();
+                }
+            } catch(e) {
+                console.log("Web Audio not supported, fallback silent");
+            }
+        }
+        
+        function beepSound() {
+            if (!audioContext) return;
+            const now = audioContext.currentTime;
+            const oscillator = audioContext.createOscillator();
+            const gainNode = audioContext.createGain();
+            oscillator.connect(gainNode);
+            gainNode.connect(audioContext.destination);
+            oscillator.frequency.value = 880; // nada tinggi
+            gainNode.gain.setValueAtTime(0.2, now);
+            gainNode.gain.exponentialRampToValueAtTime(0.0001, now + 0.5);
+            oscillator.start();
+            oscillator.stop(now + 0.3);
+        }
+        
+        // element suara alternatif jika memang ingin memainkan file (tapi tidak ada file, jadi kita hanya web audio)
+        // Tapi di kode asli memainkan <audio id="loginSound"> dengan source suara.wav. Agar mirip, saya tambahkan 
+        // element audio tersebut dan mencoba memuat file suara.wav (tapi tidak ada), namun tetap akan trigger fallback.
+        // Untuk keperluan demo, saya tetap menyediakan audio element dengan sumber dummy (silent) dan saat tombol 
+        // diklik kita mainkan web audio.
+        
+        // Jadi: fungsi untuk bermain suara (menggantikan sound.play di aslinya)
+        function playAuthSound() {
+            // Mirip seperti di kode asli: sound.play(); disini kita panggil custom suara.
+            playLoginSound();
+        }
+        
+        // ========== VALIDASI & SUBMIT (tanpa backend, hanya demo) ==========
+        const form = document.getElementById('loginForm');
+        const btnLogin = document.getElementById('btnLogin');
+        const emailInput = document.getElementById('emailInput');
+        const passwordInput = document.getElementById('passwordInput');
+        const emailError = document.getElementById('emailError');
+        const passwordError = document.getElementById('passwordError');
+        
+        // Hapus class invalid dll
+        function resetErrors() {
+            emailError.classList.add('d-none');
+            passwordError.classList.add('d-none');
+            emailInput.classList.remove('is-invalid');
+            passwordInput.classList.remove('is-invalid');
+        }
+        
+        function validateForm() {
+            let isValid = true;
+            const emailVal = emailInput.value.trim();
+            const passVal = passwordInput.value.trim();
+            
+            if (emailVal === '') {
+                emailError.classList.remove('d-none');
+                emailInput.classList.add('is-invalid');
+                isValid = false;
+            } else if (!emailVal.includes('@') || !emailVal.includes('.')) {
+                emailError.innerText = 'Email tidak valid (contoh: nama@domain.com)';
+                emailError.classList.remove('d-none');
+                emailInput.classList.add('is-invalid');
+                isValid = false;
+            } else {
+                emailError.classList.add('d-none');
+                emailInput.classList.remove('is-invalid');
+            }
+            
+            if (passVal === '') {
+                passwordError.innerText = 'Password diperlukan';
+                passwordError.classList.remove('d-none');
+                passwordInput.classList.add('is-invalid');
+                isValid = false;
+            } else if (passVal.length < 3) {
+                passwordError.innerText = 'Minimal 3 karakter';
+                passwordError.classList.remove('d-none');
+                passwordInput.classList.add('is-invalid');
+                isValid = false;
+            } else {
+                passwordError.classList.add('d-none');
+                passwordInput.classList.remove('is-invalid');
+            }
+            return isValid;
+        }
+        
+        // Handle login dengan efek suara + delay (mirip dengan kode asli)
+        btnLogin.addEventListener('click', function(e) {
+            e.preventDefault();  // mencegah submit form (karena demo)
+            resetErrors();
+            
+            if (!validateForm()) {
+                // jika tidak valid, tetap mainkan suara? di kode asli juga mainkan suara walaupun error? 
+                // Tapi lebih baik beri suara + notif. Saya ikuti logika: jika tidak valid, suara tetap diputar sebagai feedback.
+                playAuthSound();
+                // sedikit delay tapi tidak submit
+                return;
+            }
+            
+            // MAIN LOGIKA: putar suara dulu, lalu setelah delay 'submit' simulasi login sukses
+            playAuthSound();
+            
+            // Disable tombol sebentar untuk mencegah double click
+            btnLogin.disabled = true;
+            btnLogin.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Signing...';
+            
+            setTimeout(() => {
+                // Simulasi login berhasil, arahkan ke dashboard sederhana (karena tidak ada route backend)
+                // Di kode asli, setelah suara, submit form ke route login. Disini kita akan menampilkan alert sukses
+                // dan redirect ke halaman dashboard tiruan (atau menampilkan pesan).
+                // Agar lebih interaktif, kita simpan status login di localStorage dan tampilkan notifikasi.
+                const rememberMe = document.getElementById('remember').checked;
+                if (rememberMe) {
+                    localStorage.setItem('demo_remember', 'true');
+                    localStorage.setItem('demo_email', emailInput.value.trim());
+                } else {
+                    localStorage.removeItem('demo_remember');
+                }
+                // Tampilkan toast atau alert modern? kita gunakan sweetalert? tidak perlu, cukup alert sementara
+                // Tapi agar lebih elegant kita buat notifikasi floating
+                showSuccessMessage("Login berhasil! Selamat datang, " + emailInput.value.split('@')[0]);
+                // Reset tombol
+                btnLogin.disabled = false;
+                btnLogin.innerHTML = 'Sign In <i class="fas fa-arrow-right ml-1"></i>';
+                // Optional: redirect ke halaman utama (index.html?dashboard)
+                // Karena ini file index.html, kita bisa pindah ke halaman yang sama dengan parameter ?dashboard=true
+                // Tapi lebih friendly: buat overlay sederhana.
+                setTimeout(() => {
+                    // membuat tampilan dashboard sederhana (ganti body content)
+                    window.location.href = "#dashboard";
+                    document.body.innerHTML = `<div style="min-height:100vh; background: linear-gradient(145deg, #0f172a, #0b1120); display:flex; align-items:center; justify-content:center; color:white; font-family: monospace;">
+                        <div style="background: rgba(0,0,0,0.7); backdrop-filter: blur(12px); padding: 2rem; border-radius: 40px; text-align:center;">
+                            <i class="fas fa-check-circle" style="font-size: 64px; color: #22c55e;"></i>
+                            <h1 class="mt-3">Dashboard Peminjaman HP</h1>
+                            <p>Login sukses sebagai <strong>${emailInput.value.trim()}</strong></p>
+                            <button onclick="location.reload()" class="btn btn-warning mt-3">Kembali ke Login</button>
+                        </div>
+                    </div>`;
+                }, 800);
+            }, 500); // delay sama dengan aslinya 500ms
+        });
+        
+        function showSuccessMessage(msg) {
+            // membuat toast sederhana
+            const toastDiv = document.createElement('div');
+            toastDiv.innerText = msg;
+            toastDiv.style.position = 'fixed';
+            toastDiv.style.bottom = '20px';
+            toastDiv.style.left = '50%';
+            toastDiv.style.transform = 'translateX(-50%)';
+            toastDiv.style.backgroundColor = '#10b981';
+            toastDiv.style.color = 'white';
+            toastDiv.style.padding = '12px 24px';
+            toastDiv.style.borderRadius = '60px';
+            toastDiv.style.fontWeight = 'bold';
+            toastDiv.style.zIndex = '9999';
+            toastDiv.style.boxShadow = '0 10px 20px rgba(0,0,0,0.2)';
+            toastDiv.style.backdropFilter = 'blur(8px)';
+            document.body.appendChild(toastDiv);
+            setTimeout(() => toastDiv.remove(), 2000);
+        }
+        
+        // Handle forgot password & register link (demo)
+        document.getElementById('forgotLink').addEventListener('click', function(e) {
+            e.preventDefault();
+            alert("🔐 Demo: Kirim instruksi reset password ke email terdaftar.");
+        });
+        document.getElementById('registerLink').addEventListener('click', function(e) {
+            e.preventDefault();
+            alert("📝 Demo: Halaman registrasi akun baru. (Simulasi)");
+        });
+        
+        // Preload audio context di klik pertama (sesuai kebijakan browser, diaktifkan oleh user gesture)
+        // Juga coba inisialisasi audio saat user klik di area mana pun? tapi di tombol login akan dipanggil.
+        // Untuk lebih mirip, tambahkan event listener ke body pertama kali.
+        document.body.addEventListener('click', function initAudio() {
+            if (audioContext && audioContext.state === 'suspended') {
+                audioContext.resume();
+            }
+            document.body.removeEventListener('click', initAudio);
+        }, { once: true });
+        
+        // Restore remember me jika ada di localStorage (demo)
+        if (localStorage.getItem('demo_remember') === 'true') {
+            const savedEmail = localStorage.getItem('demo_email');
+            if (savedEmail) {
+                emailInput.value = savedEmail;
+                document.getElementById('remember').checked = true;
+            }
+        }
+        
+        // Tambahkan efek tambahan : jika tombol sign in di enter (form submit), cegah default
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            btnLogin.click();
+        });
+        
+        // sedikit gaya validasi realtime
+        emailInput.addEventListener('input', function() {
+            if (emailInput.classList.contains('is-invalid')) {
+                emailInput.classList.remove('is-invalid');
+                emailError.classList.add('d-none');
+            }
+        });
+        passwordInput.addEventListener('input', function() {
+            if (passwordInput.classList.contains('is-invalid')) {
+                passwordInput.classList.remove('is-invalid');
+                passwordError.classList.add('d-none');
+            }
+        });
+        
+        // inisialisasi dummy audio element agar struktur mirip aslinya (optional)
+        const audioElem = document.createElement('audio');
+        audioElem.id = 'loginSound';
+        audioElem.preload = 'auto';
+        // tidak perlu append, karena kita pakai web audio. tapi biar konsisten dengan kode asli
+        if (!document.getElementById('loginSound')) {
+            const newAudio = document.createElement('audio');
+            newAudio.id = 'loginSound';
+            newAudio.style.display = 'none';
+            document.body.appendChild(newAudio);
+        }
+    </script>
+    
+    <!-- Optional: Font awesome sudah diinclude, bootstrap js untuk beberapa komponen -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/js/adminlte.min.js"></script>
+</body>
+</html>
