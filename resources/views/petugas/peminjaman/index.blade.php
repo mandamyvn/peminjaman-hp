@@ -2,6 +2,8 @@
 
 @section('title', 'Manajemen Peminjaman')
 
+<link rel="stylesheet" href="{{ asset('css/petugas.css') }}">
+
 @section('content')
 <div class="container-fluid">
     <div class="card border-0 shadow-lg" style="background: linear-gradient(135deg, #FFF9E6 0%, #FFFFFF 100%);">
@@ -211,152 +213,6 @@
 <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap4.min.js"></script>
 <script src="https://cdn.datatables.net/responsive/2.5.0/js/dataTables.responsive.min.js"></script>
 
-<style>
-/* Card styling */
-.card {
-    border-radius: 12px;
-    overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(255, 215, 0, 0.2) !important;
-}
-
-/* Button hover effects */
-.btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-    transition: all 0.3s ease;
-}
-
-.btn:active {
-    transform: translateY(0);
-}
-
-/* Table styling */
-.table-hover tbody tr:hover {
-    background: linear-gradient(135deg, #FFF9E6 0%, #FFF3CD 100%);
-    transition: all 0.3s ease;
-}
-
-/* DataTables customization */
-.dataTables_wrapper .dataTables_length select,
-.dataTables_wrapper .dataTables_filter input {
-    border: 1px solid #FFD700;
-    border-radius: 8px;
-    padding: 5px 10px;
-    margin-left: 5px;
-    margin-right: 5px;
-}
-
-.dataTables_wrapper .dataTables_length select:focus,
-.dataTables_wrapper .dataTables_filter input:focus {
-    border-color: #FDB931;
-    box-shadow: 0 0 0 0.2rem rgba(253, 185, 49, 0.25);
-}
-
-.dataTables_wrapper .dataTables_paginate .paginate_button {
-    border-radius: 6px;
-    margin: 0 2px;
-}
-
-.dataTables_wrapper .dataTables_paginate .paginate_button.current {
-    background: linear-gradient(135deg, #FFD700 0%, #FDB931 100%);
-    color: #000000 !important;
-    border: none;
-}
-
-.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
-    background: linear-gradient(135deg, #FFF3CD 0%, #FFE69C 100%);
-    color: #000000 !important;
-    border: none;
-}
-
-/* Modal styling */
-.modal-content {
-    border-radius: 12px;
-    overflow: hidden;
-}
-
-.modal-header {
-    padding: 15px 20px;
-}
-
-.modal-body {
-    padding: 20px;
-}
-
-.modal-footer {
-    padding: 15px 20px;
-}
-
-/* Form control styling */
-.form-control:focus {
-    border-color: #FDB931;
-    box-shadow: 0 0 0 0.2rem rgba(253, 185, 49, 0.25);
-}
-
-/* Badge styling */
-.badge {
-    font-weight: 500;
-    font-size: 0.85rem;
-}
-
-/* Button group styling */
-.btn-group .btn {
-    margin: 0 2px;
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    .btn-group .btn {
-        padding: 6px 10px !important;
-        font-size: 12px;
-    }
-    
-    .table td, .table th {
-        padding: 8px !important;
-    }
-    
-    .dataTables_wrapper .dataTables_length,
-    .dataTables_wrapper .dataTables_filter {
-        margin-bottom: 15px;
-    }
-}
-
-/* Scrollbar styling */
-::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
-}
-
-::-webkit-scrollbar-track {
-    background: #FFF9E6;
-}
-
-::-webkit-scrollbar-thumb {
-    background: linear-gradient(135deg, #FFD700 0%, #FDB931 100%);
-    border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: linear-gradient(135deg, #FDB931 0%, #FFD700 100%);
-}
-
-/* Animation for DataTables */
-.dataTables_wrapper .dataTables_paginate .paginate_button {
-    transition: all 0.3s ease;
-}
-
-/* Table header sticky */
-.thead-sticky th {
-    position: sticky;
-    top: 0;
-    z-index: 10;
-}
-</style>
 
 <script>
 $(document).ready(function() {
@@ -393,29 +249,5 @@ $(document).ready(function() {
 });
 </script>
 
-@push('styles')
-<style>
-/* Additional styles for DataTables */
-.dataTables_wrapper .dataTables_paginate .paginate_button {
-    padding: 0.375rem 0.75rem;
-}
 
-.dataTables_wrapper .dataTables_paginate .paginate_button.current {
-    background: linear-gradient(135deg, #FFD700 0%, #FDB931 100%);
-    color: #000000 !important;
-    border: none;
-}
-
-.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
-    background: linear-gradient(135deg, #FFF3CD 0%, #FFE69C 100%);
-    color: #000000 !important;
-    border: none;
-}
-
-.dataTables_wrapper .dataTables_filter input {
-    border-radius: 20px;
-    padding: 6px 12px;
-}
-</style>
-@endpush
 @endsection

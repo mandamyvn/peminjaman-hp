@@ -397,7 +397,7 @@
 
 <div class="mb-4">
     <video autoplay muted loop controls style="width: 100%; height: auto; border-radius: 10px;">
-        <source src="{{ asset('img/iklan.mp4') }}" type="video/mp4">
+        <source src="{{ asset('img/iklan2.mp4') }}" type="video/mp4">
     </video>
 </div>
 
@@ -666,6 +666,7 @@ video {
 ::-webkit-scrollbar-thumb:hover {
     background: linear-gradient(135deg, #FDB931 0%, #FFD700 100%);
 }
+
 </style>
 
 @endsection

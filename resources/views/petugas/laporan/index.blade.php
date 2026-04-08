@@ -2,6 +2,8 @@
 
 @section('title', 'Laporan')
 
+<link rel="stylesheet" href="{{ asset('css/petugas.css') }}">
+
 @section('content')
 <div class="container-fluid">
     <div class="card border-0 shadow-lg" style="background: linear-gradient(135deg, #FFF9E6 0%, #FFFFFF 100%);">
@@ -227,140 +229,7 @@
     </div>
 </div>
 
-<style>
-/* Card styling */
-.card {
-    border-radius: 12px;
-    overflow: hidden;
-}
 
-/* Form control styling */
-.form-control:focus {
-    border-color: #FDB931;
-    box-shadow: 0 0 0 0.2rem rgba(253, 185, 49, 0.25);
-}
-
-/* Button hover effects */
-.btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-    transition: all 0.3s ease;
-}
-
-.btn:active {
-    transform: translateY(0);
-}
-
-/* Tab styling */
-.nav-tabs .nav-link {
-    padding: 12px 20px;
-    margin-right: 5px;
-}
-
-.nav-tabs .nav-link.active {
-    background: linear-gradient(135deg, #FFD700 0%, #FDB931 100%);
-    color: #000000 !important;
-    border-radius: 8px 8px 0 0;
-    font-weight: 600;
-}
-
-.nav-tabs .nav-link:not(.active):hover {
-    background: rgba(255, 215, 0, 0.2);
-    border-radius: 8px 8px 0 0;
-}
-
-/* Info box styling */
-.info-box {
-    transition: all 0.3s ease;
-    padding: 20px;
-}
-
-.info-box:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 25px rgba(255, 215, 0, 0.3) !important;
-}
-
-.info-box-icon {
-    width: 70px;
-    height: 70px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 2rem;
-}
-
-/* Table hover effect */
-.table-hover tbody tr:hover {
-    background: linear-gradient(135deg, #FFF9E6 0%, #FFF3CD 100%);
-    transition: all 0.3s ease;
-}
-
-/* Pagination styling */
-.pagination .page-item.active .page-link {
-    background: linear-gradient(135deg, #FFD700 0%, #FDB931 100%);
-    border-color: #FFD700;
-    color: #000000;
-}
-
-.pagination .page-link {
-    color: #FDB931;
-}
-
-.pagination .page-link:hover {
-    background: linear-gradient(135deg, #FFF3CD 0%, #FFE69C 100%);
-    color: #000000;
-}
-
-/* Gap utility */
-.gap-2 {
-    gap: 10px;
-}
-
-.g-3 {
-    gap: 15px;
-}
-
-.g-4 {
-    gap: 20px;
-}
-
-.flex-wrap {
-    flex-wrap: wrap;
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    .info-box-icon {
-        width: 50px;
-        height: 50px;
-        font-size: 1.5rem;
-    }
-    
-    .info-box-number {
-        font-size: 20px !important;
-    }
-    
-    .btn {
-        padding: 8px 16px !important;
-        font-size: 14px;
-    }
-    
-    .nav-tabs .nav-link {
-        padding: 8px 12px;
-        font-size: 14px;
-    }
-}
-
-/* Empty state styling */
-.text-center i {
-    opacity: 0.5;
-}
-
-/* Badge styling */
-.badge {
-    font-weight: 500;
-}
-</style>
 
 <script>
 function cetakLaporan(type) {

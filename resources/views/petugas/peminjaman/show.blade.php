@@ -2,6 +2,8 @@
 
 @section('title', 'Detail Peminjaman')
 
+<link rel="stylesheet" href="{{ asset('css/petugas.css') }}">
+
 @section('content')
 <div class="container-fluid">
     <div class="card border-0 shadow-lg" style="background: linear-gradient(135deg, #FFF9E6 0%, #FFFFFF 100%);">
@@ -338,108 +340,5 @@
     </div>
 </div>
 
-<style>
-/* Card styling */
-.card {
-    border-radius: 12px;
-    overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
 
-.card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(255, 215, 0, 0.15) !important;
-}
-
-/* Button hover effects */
-.btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-    transition: all 0.3s ease;
-}
-
-.btn:active {
-    transform: translateY(0);
-}
-
-/* Form control styling */
-.form-control:focus {
-    border-color: #FDB931;
-    box-shadow: 0 0 0 0.2rem rgba(253, 185, 49, 0.25);
-}
-
-/* Table styling */
-.table-borderless tr {
-    border-bottom: 1px solid rgba(255, 215, 0, 0.2);
-}
-
-.table-borderless tr:last-child {
-    border-bottom: none;
-}
-
-/* Modal styling */
-.modal-content {
-    border-radius: 12px;
-    overflow: hidden;
-}
-
-.modal-header {
-    padding: 15px 20px;
-}
-
-.modal-body {
-    padding: 20px;
-}
-
-.modal-footer {
-    padding: 15px 20px;
-}
-
-/* Badge styling */
-.badge {
-    font-weight: 500;
-    font-size: 0.85rem;
-}
-
-/* Gap utility */
-.gap-2 {
-    gap: 10px;
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    .btn {
-        padding: 8px 16px !important;
-        font-size: 14px;
-    }
-    
-    .card-header h5 {
-        font-size: 16px;
-    }
-    
-    .table-borderless th,
-    .table-borderless td {
-        font-size: 14px;
-    }
-}
-
-/* Scrollbar styling */
-::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
-}
-
-::-webkit-scrollbar-track {
-    background: #FFF9E6;
-}
-
-::-webkit-scrollbar-thumb {
-    background: linear-gradient(135deg, #FFD700 0%, #FDB931 100%);
-    border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: linear-gradient(135deg, #FDB931 0%, #FFD700 100%);
-}
-</style>
 @endsection

@@ -15,6 +15,8 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/css/adminlte.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
+<link rel="stylesheet" href="{{ asset('css/admin.css') }}">
+
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
@@ -171,27 +173,6 @@
     </div>
 </aside>
 
-<style>
-/* Style untuk menu aktif */
-.nav-sidebar .nav-link.active {
-    background-color: rgba(255, 255, 255, 0.3) !important;
-    color: #000000 !important;
-}
-
-.nav-sidebar .nav-link.active i {
-    color: #000000 !important;
-}
-
-/* Hover effect */
-.nav-sidebar .nav-link:hover {
-    background-color: rgba(255, 255, 255, 0.2) !important;
-}
-
-/* Style untuk submenu jika ada */
-.nav-treeview {
-    background-color: rgba(0, 0, 0, 0.05) !important;
-}
-</style>
 
         <!-- Content Wrapper -->
         <div class="content-wrapper">

@@ -2,6 +2,9 @@
 
 @section('title', 'Detail Alat')
 
+
+<link rel="stylesheet" href="{{ asset('css/peminjam.css') }}">
+
 @section('content')
 <div class="container-fluid">
     <div class="card-yellow">

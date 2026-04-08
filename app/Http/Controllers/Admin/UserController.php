@@ -100,21 +100,26 @@ class UserController extends Controller
             ->with('success', 'User berhasil diperbarui');
     }
 
-    public function destroy(User $user)
-    {
-        $nama_user = $user->name;
-        $user->delete();
-
-        // Log aktivitas
-        LogAktifitas::create([
-            'user_id' => Auth::id(),
-            'aksi' => 'DELETE',
-            'deskripsi' => 'Menghapus user: ' . $nama_user,
-            'ip_address' => request()->ip(),
-            'user_agent' => request()->header('User-Agent')
-        ]);
-
+   public function destroy(User $user)
+{
+    // cek apakah user punya peminjaman
+    if ($user->peminjamans()->count() > 0) {
         return redirect()->route('admin.users.index')
-            ->with('success', 'User berhasil dihapus');
+            ->with('error', 'User tidak bisa dihapus karena masih memiliki data peminjaman!');
     }
+
+    $nama_user = $user->name;
+    $user->delete();
+
+    LogAktifitas::create([
+        'user_id' => Auth::id(),
+        'aksi' => 'DELETE',
+        'deskripsi' => 'Menghapus user: ' . $nama_user,
+        'ip_address' => request()->ip(),
+        'user_agent' => request()->header('User-Agent')
+    ]);
+
+    return redirect()->route('admin.users.index')
+        ->with('success', 'User berhasil dihapus');
+}
 }
